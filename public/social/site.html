@@ -1134,6 +1134,13 @@
         <button class="btn full" style="margin-top:14px" onclick="saveIgnoredSenders()" data-i18n="settings.ignoredSave">Сохранить список</button>
       </div>
       <div class="card glass" style="margin-top:22px">
+        <div class="row-between">
+          <div><div class="card-title" style="margin-bottom:4px" data-i18n="settings.commentsProcessing">Обработка комментариев</div>
+          <div style="font-size:11.5px;color:var(--ink-faint);max-width:520px" data-i18n="settings.commentsProcessingHint">Если выключено, бот полностью не реагирует на комментарии под постами — ни черновиков, ни карточек на ревью, ни модерации спама. Личные сообщения продолжают обрабатываться как обычно.</div></div>
+          <button class="toggle" id="comments-enabled-toggle" onclick="toggleCommentsEnabled()"></button>
+        </div>
+      </div>
+      <div class="card glass" style="margin-top:22px">
         <div class="card-title" data-i18n="settings.apiKeys">Ключи API</div>
         <div style="font-size:12.5px;color:var(--ink-soft);line-height:1.6" data-i18n="settings.apiKeysDesc">
           Instagram, Anthropic и Telegram токены настраиваются на сервере бота (файл <code>.env</code>) и никогда не передаются
@@ -1250,6 +1257,7 @@
       'toast.emptyDraft': 'Введите текст ответа', 'toast.sent': 'Отправлено', 'toast.sendFailed': 'Не удалось отправить: ',
       'toast.skipped': 'Пропущено', 'toast.skipFailed': 'Не удалось пропустить: ',
       'toast.ideasGenerated': 'План сгенерирован', 'toast.ideasGenerateFailed': 'Не удалось сгенерировать план: ',
+      'toast.ideasNoData': 'Пока маловато данных: нужны вопросы от подписчиков или собранные тренды',
       'content.title': 'Контент-план', 'content.sub': 'Идеи на основе запросов аудитории и трендов',
       'content.audienceInterest': 'Что интересует аудиторию',
       'content.generate': 'Сгенерировать план', 'content.generating': 'Генерация…',
@@ -1270,6 +1278,10 @@
       'settings.ignoredPh': 'например:\nmy_test_account\nsister_ig_nick',
       'settings.ignoredSave': 'Сохранить список',
       'toast.ignoredSaved': 'Список сохранён', 'toast.ignoredSaveFailed': 'Не удалось сохранить список',
+      'settings.commentsProcessing': 'Обработка комментариев',
+      'settings.commentsProcessingHint': 'Если выключено, бот полностью не реагирует на комментарии под постами — ни черновиков, ни карточек на ревью, ни модерации спама. Личные сообщения продолжают обрабатываться как обычно.',
+      'toast.commentsEnabled': 'Обработка комментариев включена', 'toast.commentsDisabled': 'Обработка комментариев выключена',
+      'toast.commentsToggleFailed': 'Не удалось изменить настройку',
       'settings.apiKeys': 'Ключи API',
       'settings.apiKeysDesc': 'Instagram, Anthropic и Telegram токены настраиваются на сервере бота (файл <code>.env</code>) и никогда не передаются в дашборд ни в одном виде — по соображениям безопасности здесь их нельзя ни посмотреть, ни изменить.',
       'toast.botStarted': 'Бот запущен', 'toast.botStopped': 'Бот остановлен',
@@ -1349,6 +1361,7 @@
       'toast.emptyDraft': 'Enter a reply first', 'toast.sent': 'Sent', 'toast.sendFailed': "Couldn't send: ",
       'toast.skipped': 'Skipped', 'toast.skipFailed': "Couldn't skip: ",
       'toast.ideasGenerated': 'Plan generated', 'toast.ideasGenerateFailed': "Couldn't generate the plan: ",
+      'toast.ideasNoData': 'Not enough data yet — needs subscriber questions or collected trends',
       'content.title': 'Content plan', 'content.sub': 'Ideas based on audience questions and trends',
       'content.audienceInterest': 'What the audience is asking about',
       'content.generate': 'Generate plan', 'content.generating': 'Generating…',
@@ -1369,6 +1382,10 @@
       'settings.ignoredPh': 'e.g.:\nmy_test_account\nsister_ig_nick',
       'settings.ignoredSave': 'Save list',
       'toast.ignoredSaved': 'List saved', 'toast.ignoredSaveFailed': 'Could not save list',
+      'settings.commentsProcessing': 'Comment processing',
+      'settings.commentsProcessingHint': "When off, the bot doesn't react to post comments at all — no drafts, no review cards, no spam moderation. Direct messages keep working as usual.",
+      'toast.commentsEnabled': 'Comment processing enabled', 'toast.commentsDisabled': 'Comment processing disabled',
+      'toast.commentsToggleFailed': "Couldn't change the setting",
       'settings.apiKeys': 'API keys',
       'settings.apiKeysDesc': 'Instagram, Anthropic, and Telegram tokens are configured on the bot server (<code>.env</code> file) and are never sent to the dashboard in any form — for security they can’t be viewed or changed here.',
       'toast.botStarted': 'Bot started', 'toast.botStopped': 'Bot stopped',
@@ -1746,8 +1763,8 @@
     var label = btn.textContent;
     btn.disabled = true;
     btn.textContent = t('content.generating');
-    return apiFetch('/api/ideas/generate', { method: 'POST' }).then(function () {
-      showToast(t('toast.ideasGenerated'));
+    return apiFetch('/api/ideas/generate', { method: 'POST' }).then(function (res) {
+      showToast(res.status === 'no_data' ? t('toast.ideasNoData') : t('toast.ideasGenerated'));
       return loadSection(loadIdeas, 'ideas-list-content');
     }).catch(function (e) {
       if (e.message !== 'unauthorized') showToast(t('toast.ideasGenerateFailed') + e.message, true);
@@ -1782,6 +1799,17 @@
     document.getElementById('lang-toggle-en').classList.toggle('on', !anyOn && langs.indexOf('en') !== -1);
 
     document.getElementById('ignored-senders-field').value = (status.ignored_senders || []).join('\n');
+
+    document.getElementById('comments-enabled-toggle').classList.toggle('on', status.comments_enabled !== false);
+  }
+
+  function toggleCommentsEnabled() {
+    return apiFetch('/api/bot/comments-toggle', { method: 'POST' }).then(function (status) {
+      applyBotStatus(status);
+      showToast(status.comments_enabled ? t('toast.commentsEnabled') : t('toast.commentsDisabled'));
+    }).catch(function (e) {
+      if (e.message !== 'unauthorized') showToast(t('toast.commentsToggleFailed'), true);
+    });
   }
 
   function saveIgnoredSenders() {
