@@ -1055,7 +1055,10 @@
         <div class="page-sub" data-i18n="content.sub">Идеи на основе запросов аудитории и трендов</div>
       </div>
       <div class="card glass">
-        <div class="card-title" data-i18n="home.postIdeas">Идеи для постов</div>
+        <div class="row-between" style="margin-bottom:10px">
+          <div class="card-title" style="margin:0" data-i18n="home.postIdeas">Идеи для постов</div>
+          <button class="btn ghost" id="generate-ideas-btn" style="padding:9px 18px;font-size:13px" onclick="generateIdeas(this)" data-i18n="content.generate">Сгенерировать план</button>
+        </div>
         <div id="ideas-list-content"><div class="empty-state" data-i18n="common.loading">Загрузка…</div></div>
       </div>
       <div class="card glass">
@@ -1246,8 +1249,10 @@
       'queue.type.needs_attention': 'Требует внимания',
       'toast.emptyDraft': 'Введите текст ответа', 'toast.sent': 'Отправлено', 'toast.sendFailed': 'Не удалось отправить: ',
       'toast.skipped': 'Пропущено', 'toast.skipFailed': 'Не удалось пропустить: ',
+      'toast.ideasGenerated': 'План сгенерирован', 'toast.ideasGenerateFailed': 'Не удалось сгенерировать план: ',
       'content.title': 'Контент-план', 'content.sub': 'Идеи на основе запросов аудитории и трендов',
       'content.audienceInterest': 'Что интересует аудиторию',
+      'content.generate': 'Сгенерировать план', 'content.generating': 'Генерация…',
       'analytics.title': 'Аналитика', 'analytics.sub': 'Статистика работы бота', 'analytics.today': 'Сегодня',
       'analytics.autoReplies': 'Авто-ответы', 'analytics.pendingNow': 'На ревью сейчас',
       'analytics.chartUnavailable': 'Недельный график пока недоступен — текущий API отдаёт только статистику за сегодня и топ тем за 7 дней.',
@@ -1343,8 +1348,10 @@
       'queue.type.needs_attention': 'Needs attention',
       'toast.emptyDraft': 'Enter a reply first', 'toast.sent': 'Sent', 'toast.sendFailed': "Couldn't send: ",
       'toast.skipped': 'Skipped', 'toast.skipFailed': "Couldn't skip: ",
+      'toast.ideasGenerated': 'Plan generated', 'toast.ideasGenerateFailed': "Couldn't generate the plan: ",
       'content.title': 'Content plan', 'content.sub': 'Ideas based on audience questions and trends',
       'content.audienceInterest': 'What the audience is asking about',
+      'content.generate': 'Generate plan', 'content.generating': 'Generating…',
       'analytics.title': 'Analytics', 'analytics.sub': 'Bot performance stats', 'analytics.today': 'Today',
       'analytics.autoReplies': 'Auto replies', 'analytics.pendingNow': 'In review now',
       'analytics.chartUnavailable': "Weekly chart isn't available yet — the current API only returns today's stats and the 7-day topic breakdown.",
@@ -1531,8 +1538,8 @@
       loadSection(loadBloggerProfile, null);
     },
     content: function () {
-      loadSection(loadIdeas, 'ideas-list-home');
-      loadSection(loadTopics, 'topics-list');
+      loadSection(loadIdeas, 'ideas-list-content');
+      loadSection(loadTopics, 'topics-list-content');
     },
     analytics: function () { loadSection(loadStats, null); loadSection(loadUsageCycle, null); },
     settings: function () { loadSection(loadBotStatus, null); },
@@ -1729,6 +1736,24 @@
       document.getElementById('ideas-list-content').innerHTML = sorted.length
         ? sorted.map(function (idea, i) { return ideaCardHtml(idea, i >= 2); }).join('')
         : empty;
+    });
+  }
+
+  function generateIdeas(btn) {
+    // Runs the real M6/M11 pipeline on demand (bypasses the weekly-minimum
+    // threshold) — takes a few seconds since it makes real Claude calls, so
+    // the button shows a "Генерация…" state instead of just disabling silently.
+    var label = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = t('content.generating');
+    return apiFetch('/api/ideas/generate', { method: 'POST' }).then(function () {
+      showToast(t('toast.ideasGenerated'));
+      return loadSection(loadIdeas, 'ideas-list-content');
+    }).catch(function (e) {
+      if (e.message !== 'unauthorized') showToast(t('toast.ideasGenerateFailed') + e.message, true);
+    }).then(function () {
+      btn.disabled = false;
+      btn.textContent = label;
     });
   }
 
