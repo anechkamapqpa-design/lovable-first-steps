@@ -1055,7 +1055,7 @@
         <div class="page-sub" data-i18n="content.sub">Идеи на основе запросов аудитории и трендов</div>
       </div>
       <div class="card glass">
-        <div class="row-between" style="margin-bottom:10px">
+        <div class="row-between" style="margin-bottom:10px;flex-wrap:wrap;gap:10px">
           <div class="card-title" style="margin:0" data-i18n="home.postIdeas">Идеи для постов</div>
           <button class="btn ghost" id="generate-ideas-btn" style="padding:9px 18px;font-size:13px" onclick="generateIdeas(this)" data-i18n="content.generate">Сгенерировать план</button>
         </div>
@@ -1134,10 +1134,10 @@
         <button class="btn full" style="margin-top:14px" onclick="saveIgnoredSenders()" data-i18n="settings.ignoredSave">Сохранить список</button>
       </div>
       <div class="card glass" style="margin-top:22px">
-        <div class="row-between">
-          <div><div class="card-title" style="margin-bottom:4px" data-i18n="settings.commentsProcessing">Обработка комментариев</div>
+        <div class="row-between" style="align-items:flex-start;flex-wrap:wrap;gap:14px">
+          <div style="flex:1;min-width:220px"><div class="card-title" style="margin-bottom:4px" data-i18n="settings.commentsProcessing">Обработка комментариев</div>
           <div style="font-size:11.5px;color:var(--ink-faint);max-width:520px" data-i18n="settings.commentsProcessingHint">Если выключено, бот полностью не реагирует на комментарии под постами — ни черновиков, ни карточек на ревью, ни модерации спама. Личные сообщения продолжают обрабатываться как обычно.</div></div>
-          <button class="toggle" id="comments-enabled-toggle" onclick="toggleCommentsEnabled()"></button>
+          <button class="toggle" id="comments-enabled-toggle" onclick="toggleCommentsEnabled()" style="margin-top:2px"></button>
         </div>
       </div>
       <div class="card glass" style="margin-top:22px">
