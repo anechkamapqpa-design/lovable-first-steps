@@ -39,9 +39,9 @@ const translations = {
     aiPage: {
       hero: {
         tag: "AI Assistants for Business",
-        title1: "Put the routine",
-        title2: "on autopilot.",
-        subtitle: "I design and build custom AI assistants that take repetitive work off your team — order processing, support, logistics, internal ops — in your business's own voice, with a human in control of every important decision.",
+        title1: "Cut hours of manual work",
+        title2: "with an AI assistant",
+        subtitle: "I automate order processing, support, sales and internal operations — built around your business, not a template.",
         ctaPrimary: "Discuss your project",
         ctaSecondary: "See a real case",
         stats: ["Human-in-the-loop", "Built on Claude AI", "Runs on your own data"],
@@ -1158,9 +1158,9 @@ const translations = {
     aiPage: {
       hero: {
         tag: "ИИ-ассистенты для бизнеса",
-        title1: "Переведите рутину",
-        title2: "на автопилот.",
-        subtitle: "Проектирую и собираю ИИ-ассистентов под ваш процесс — обработка заказов, поддержка, логистика, внутренние операции — в голосе вашего бизнеса, где каждое важное решение остаётся за человеком.",
+        title1: "Сократите часы ручной работы",
+        title2: "с помощью ИИ-ассистента",
+        subtitle: "Автоматизирую обработку заказов, поддержку, продажи и внутренние процессы — под ваш бизнес, а не по шаблону.",
         ctaPrimary: "Обсудить проект",
         ctaSecondary: "Посмотреть кейс",
         stats: ["Человек в контуре", "На базе Claude AI", "Работает на ваших данных"],
