@@ -4,6 +4,7 @@ import { ArrowRight, LayoutGrid, Bot, Check } from "lucide-react";
 import { AnnaNavbar } from "@/components/AnnaNavbar";
 import { AnnaFooter } from "@/components/AnnaFooter";
 import { AnimatedText } from "@/components/AnimatedText";
+import { Button } from "@/components/ui/button";
 import { useLang, useLangPath } from "@/lib/i18n";
 
 function MarqueeStrip() {
@@ -42,6 +43,12 @@ export default function Home() {
               <AnimatedText text={t.services.title} />
             </h1>
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }} className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">{t.services.subtitle}</motion.p>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.6 }} className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+              <Button size="lg" className="rounded-xl w-full sm:w-auto" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>{t.services.ctaPrimary}<ArrowRight className="w-4 h-4 ml-1" /></Button>
+              <Button size="lg" variant="secondary" className="rounded-xl w-full sm:w-auto" asChild>
+                <Link to={lp("/ai")}>{t.services.ctaSecondary}</Link>
+              </Button>
+            </motion.div>
 
             <div className="mt-10 sm:mt-14 grid md:grid-cols-2 gap-4 sm:gap-6">
               {/* AI assistants — primary service */}

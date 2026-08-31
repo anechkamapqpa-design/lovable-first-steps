@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Bot, MessageSquare, Route, ShieldCheck, Mail, Headphones, Boxes } from "lucide-react";
+import { ArrowRight, Bot, MessageSquare, Route, ShieldCheck, Mail, Headphones, Boxes, X, Check } from "lucide-react";
 import { AnnaNavbar } from "@/components/AnnaNavbar";
 import { AnnaFooter } from "@/components/AnnaFooter";
 import { Button } from "@/components/ui/button";
@@ -126,11 +126,21 @@ export default function AI() {
             </div>
             <div className="mt-10 pt-8 border-t border-border/40">
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary mb-5">{ai.flagship.metricsLabel}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                {ai.flagship.metrics.map((m, i) => (
-                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-                    <div className="font-display text-3xl sm:text-4xl font-black text-gradient mb-1">{m.value}</div>
-                    <p className="text-sm text-muted-foreground leading-snug">{m.label}</p>
+              <div className="hidden sm:grid grid-cols-2 gap-4 mb-3">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground/60">{ai.flagship.beforeLabel}</span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">{ai.flagship.afterLabel}</span>
+              </div>
+              <div className="space-y-3">
+                {ai.flagship.beforeAfter.map((row, i) => (
+                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div className="flex items-start gap-2.5 rounded-xl border border-border/40 bg-background/40 p-4">
+                      <span className="mt-0.5 text-muted-foreground/40 shrink-0"><X className="w-4 h-4" /></span>
+                      <p className="text-sm text-muted-foreground leading-snug"><span className="sm:hidden font-semibold text-muted-foreground/60">{ai.flagship.beforeLabel}: </span>{row.before}</p>
+                    </div>
+                    <div className="flex items-start gap-2.5 rounded-xl border border-primary/30 bg-primary/[0.06] p-4">
+                      <span className="mt-0.5 text-primary shrink-0"><Check className="w-4 h-4" /></span>
+                      <p className="text-sm text-foreground/90 leading-snug"><span className="sm:hidden font-semibold text-primary">{ai.flagship.afterLabel}: </span>{row.after}</p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -167,7 +177,10 @@ export default function AI() {
             <div className="grid md:grid-cols-4 gap-8 md:gap-6">
               {ai.process.steps.map((step, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-                  <div className="text-4xl sm:text-5xl font-black text-primary/15 mb-3">{step.num}</div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-4xl sm:text-5xl font-black text-primary/15">{step.num}</div>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-primary bg-primary/10 rounded-full px-2.5 py-1">{step.duration}</span>
+                  </div>
                   <h3 className="font-display text-lg sm:text-xl font-bold text-foreground mb-2">{step.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
                 </motion.div>
