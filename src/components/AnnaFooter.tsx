@@ -21,8 +21,12 @@ export function AnnaFooter() {
 
   useEffect(() => {
     const prefill = searchParams.get("prefill");
-    if (prefill) {
-      setDescription(prefill);
+    const service = searchParams.get("service");
+    if (prefill || service) {
+      if (prefill) setDescription(prefill);
+      // Preselect the matching project type: "ai" → first option, "landing" → second.
+      if (service === "ai") setSelectedType(0);
+      else if (service === "landing") setSelectedType(1);
       setSearchParams({}, { replace: true });
     }
   }, [searchParams, setSearchParams]);

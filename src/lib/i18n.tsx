@@ -12,8 +12,107 @@ const translations = {
       work: "What I've Built",
       about: "About Me",
       social: "Instagram Bot",
+      ai: "AI Assistants",
+      landings: "Landing Pages",
       getStarted: "Get Started",
       searchPlaceholder: "Search templates...",
+    },
+    services: {
+      label: "What I do",
+      title: "Two ways I help your business grow",
+      subtitle: "AI assistants that take routine work off your team — and landing pages that turn traffic into clients.",
+      ai: {
+        tag: "AI Automation",
+        title: "AI Assistants for Business",
+        desc: "Custom AI bots that process orders, handle support and messages, check stock and plan logistics — in your tone of voice, with a human in control of anything that matters.",
+        bullets: ["Order & email processing", "Support & DM automation", "Logistics & internal tools"],
+        cta: "Explore AI assistants",
+      },
+      landing: {
+        tag: "Landing Pages",
+        title: "High-Converting Landing Pages",
+        desc: "Premium, hand-adapted landing pages built from a curated template library. Strategy and structure first, visuals second — launched in 3–7 days.",
+        bullets: ["21 premium templates", "Custom copy & structure", "Launch in 3–7 days"],
+        cta: "Explore landing pages",
+      },
+    },
+    aiPage: {
+      hero: {
+        tag: "AI Assistants for Business",
+        title1: "Put the routine",
+        title2: "on autopilot.",
+        subtitle: "I design and build custom AI assistants that take repetitive work off your team — order processing, support, logistics, internal ops — in your business's own voice, with a human in control of every important decision.",
+        ctaPrimary: "Discuss your project",
+        ctaSecondary: "See a real case",
+        stats: ["Human-in-the-loop", "Built on Claude AI", "Runs on your own data"],
+      },
+      pains: {
+        title: "Where your team loses hours every day",
+        subtitle: "If people spend their day on repetitive, rule-based work, that's exactly what an AI assistant is for.",
+        items: [
+          { title: "Manual order processing", desc: "Reading emails, checking stock across warehouses, applying dozens of rules, calculating delivery — by hand, order after order." },
+          { title: "Endless support & DMs", desc: "The same questions, reactions and FAQs eating the hours that should go into real work." },
+          { title: "Scattered internal ops", desc: "Logistics, routing, reporting, hand-offs between teams — slow, opaque and error-prone." },
+        ],
+      },
+      capabilities: {
+        label: "What the assistant does",
+        title: "A bot shaped around your process — not a generic chatbot",
+        items: [
+          { title: "Order & email processing", desc: "Reads incoming orders — even free-form ones — checks live stock, applies your rules, computes real delivery cost and pickup points, and flags anything that needs a human decision." },
+          { title: "Support in your voice", desc: "Triages messages and comments, auto-handles routine ones in your brand's tone and drafts the rest for approval. A verified knowledge base keeps it from inventing facts." },
+          { title: "Logistics & routing", desc: "Builds the optimal daily delivery route with per-stop arrival times via mapping APIs — turning manual planning into an automatic plan." },
+          { title: "Human in the loop", desc: "Every AI-assisted step is flagged for review. The bot prepares and proposes; your team confirms anything that reaches the client." },
+        ],
+      },
+      flagship: {
+        label: "Flagship case · Top Domus",
+        title: "AI order-processing & logistics for Top Domus",
+        problem: "A retail manager processed every incoming order by hand: reading order emails, checking stock across two separate warehouses, applying dozens of compatibility and replacement rules, calculating real delivery cost and pickup points, and manually planning the driver's route for the day. Slow and error-prone, especially under order volume.",
+        approach: "I built a mail-monitoring bot that reads incoming order emails (with an AI fallback for free-form emails, guarded by multi-step anti-hallucination checks — quote grounding against the source email and catalog cross-checks), checks live stock across both warehouses, applies compatibility and replacement rules, and calculates real delivery cost, timing and pickup points via the courier API — flagging any mismatch with what the website promised the client. A second module builds the driver's optimal delivery route for the day via a mapping API, with an estimated arrival time per stop.",
+        result: "A working assistant that turns a manual, error-prone order pipeline into an automatic report with a clear verdict — 'ready to confirm' or 'needs a decision' — plus a computed delivery route, while every AI-assisted step stays flagged for human review before anything reaches the client.",
+        problemLabel: "Problem",
+        approachLabel: "Approach",
+        resultLabel: "Result",
+        metricsLabel: "Outcome",
+        metrics: [
+          { value: "Auto", label: "order reports with a clear go / no-go verdict" },
+          { value: "2", label: "warehouses checked in real time" },
+          { value: "Route", label: "optimal daily driver plan, computed" },
+        ],
+      },
+      otherCases: {
+        title: "More AI assistants I've built",
+        subtitle: "Each one solves a specific, repetitive workload — with the human always in control.",
+        items: [
+          { title: "AI Assistant for Instagram Creators", desc: "An AI agent that triages hundreds of daily comments and DMs, auto-handles routine ones in the creator's own voice, and drafts the rest for approval. Built with Claude API, a verified knowledge base and a Telegram review interface." },
+          { title: "Job-Application Assistant", desc: "A browser-extension assistant that prepares tailored resumes, cover letters and application answers — while the person always makes the final submission. A deliberate human-in-the-loop boundary on automation." },
+        ],
+      },
+      process: {
+        title: "How we work",
+        subtitle: "From understanding your process to a running assistant.",
+        steps: [
+          { num: "1", title: "Audit the process", desc: "We map how the work actually happens today — the steps, the rules, the tools and the hand-offs. Logic first." },
+          { num: "2", title: "Design the assistant", desc: "I define exactly what the bot decides, what it proposes, and where a human stays in control. You approve the boundary." },
+          { num: "3", title: "Build & test", desc: "I build it end-to-end with anti-hallucination checks and test it against your real cases before it touches anything live." },
+          { num: "4", title: "Launch & iterate", desc: "We roll it out, watch it on real volume, and tune. It can run as an app or a headless service on your side." },
+        ],
+      },
+      faq: {
+        title: "Questions before we start",
+        items: [
+          { q: "Will the AI make mistakes with my clients?", a: "The assistant is built human-in-the-loop: it prepares and proposes, but anything that reaches a client is flagged for a person to confirm. Anti-hallucination checks (quote grounding, catalog cross-checks) keep it honest." },
+          { q: "Does my data leave my business?", a: "The assistant runs on your data and your accounts. It can run as a desktop app or a headless service on your side — we agree the setup up front." },
+          { q: "How much does it cost?", a: "Every assistant is scoped to your process, so pricing is per project. Tell me the workflow and I'll come back within 24 hours with a plan and an estimate." },
+          { q: "How long does it take?", a: "It depends on the process. After the audit I give a clear timeline — most first working versions land in a few weeks, not months." },
+        ],
+      },
+      finalCta: {
+        title: "Have a routine worth automating?",
+        subtitle: "Tell me about your process — I'll come back within 24 hours with how an AI assistant would fit and what it would take. Pricing is per project.",
+        cta: "Discuss your project",
+      },
     },
     hero: {
       badge: "Premium Templates",
@@ -75,7 +174,7 @@ const translations = {
         contact: "Contact (Telegram or Email)",
         contactPlaceholder: "@telegram or email",
         projectType: "Project Type",
-        projectTypes: ["Landing", "Redesign", "Other"] as readonly string[],
+        projectTypes: ["AI Assistant", "Landing", "Redesign", "Other"] as readonly string[],
         timeline: "Timeline",
         timelines: ["Standard", "Fast 3–5 days"] as readonly string[],
         description: "Short Description",
@@ -106,7 +205,7 @@ const translations = {
         "Ready to launch or refresh your presence? Let's build something powerful.",
       ],
     },
-    marquee: ["Landing Pages", "E-Commerce", "SaaS", "Portfolio", "Creative", "Luxury", "Interactive", "Minimal"] as readonly string[],
+    marquee: ["AI Assistants", "Order Automation", "Support Bots", "Logistics AI", "Landing Pages", "E-Commerce", "SaaS", "Interactive"] as readonly string[],
     categories: {
       "All": "All",
       "E-commerce": "E-commerce",
@@ -1032,8 +1131,107 @@ const translations = {
       work: "Что я строила",
       about: "Обо мне",
       social: "Instagram-бот",
+      ai: "ИИ-ассистенты",
+      landings: "Лендинги",
       getStarted: "Начать",
       searchPlaceholder: "Поиск шаблонов...",
+    },
+    services: {
+      label: "Чем я помогаю",
+      title: "Два способа вырастить ваш бизнес",
+      subtitle: "ИИ-ассистенты, которые снимают рутину с команды, — и лендинги, которые превращают трафик в клиентов.",
+      ai: {
+        tag: "ИИ-автоматизация",
+        title: "ИИ-ассистенты для бизнеса",
+        desc: "Боты под ваш процесс: обрабатывают заказы, ведут поддержку и переписку, проверяют остатки и планируют логистику — в голосе вашего бренда, а всё важное подтверждает человек.",
+        bullets: ["Обработка заказов и почты", "Автоматизация поддержки и DM", "Логистика и внутренние инструменты"],
+        cta: "Смотреть ИИ-ассистентов",
+      },
+      landing: {
+        tag: "Лендинги",
+        title: "Высококонверсионные лендинги",
+        desc: "Премиум-лендинги, адаптированные вручную из отобранной библиотеки шаблонов. Сначала стратегия и структура, потом визуал — запуск за 3–7 дней.",
+        bullets: ["21 премиум-шаблон", "Свои тексты и структура", "Запуск за 3–7 дней"],
+        cta: "Смотреть лендинги",
+      },
+    },
+    aiPage: {
+      hero: {
+        tag: "ИИ-ассистенты для бизнеса",
+        title1: "Переведите рутину",
+        title2: "на автопилот.",
+        subtitle: "Проектирую и собираю ИИ-ассистентов под ваш процесс — обработка заказов, поддержка, логистика, внутренние операции — в голосе вашего бизнеса, где каждое важное решение остаётся за человеком.",
+        ctaPrimary: "Обсудить проект",
+        ctaSecondary: "Посмотреть кейс",
+        stats: ["Человек в контуре", "На базе Claude AI", "Работает на ваших данных"],
+      },
+      pains: {
+        title: "Где команда теряет часы каждый день",
+        subtitle: "Если люди целый день заняты повторяющейся работой по правилам — это ровно то, для чего нужен ИИ-ассистент.",
+        items: [
+          { title: "Ручная обработка заказов", desc: "Читать письма, сверять остатки по складам, применять десятки правил, считать доставку — руками, заказ за заказом." },
+          { title: "Бесконечная поддержка и DM", desc: "Одни и те же вопросы, реакции и FAQ съедают часы, которые должны идти на настоящую работу." },
+          { title: "Разрозненные операции", desc: "Логистика, маршруты, отчёты, передачи между отделами — медленно, непрозрачно и с ошибками." },
+        ],
+      },
+      capabilities: {
+        label: "Что умеет ассистент",
+        title: "Бот под ваш процесс — а не типовой чат-бот",
+        items: [
+          { title: "Обработка заказов и почты", desc: "Читает входящие заказы — даже в свободной форме, — сверяет остатки в реальном времени, применяет ваши правила, считает реальную стоимость доставки и пункты выдачи и помечает всё, что требует решения человека." },
+          { title: "Поддержка в вашем голосе", desc: "Сортирует сообщения и комментарии, рутину закрывает сам в тоне вашего бренда, остальное готовит на утверждение. Проверенная база знаний не даёт ему выдумывать факты." },
+          { title: "Логистика и маршруты", desc: "Строит оптимальный маршрут доставки на день с расчётным временем прибытия по каждой точке через картографические API — ручное планирование превращается в готовый план." },
+          { title: "Человек в контуре", desc: "Каждый шаг с ИИ помечается на проверку. Бот готовит и предлагает; всё, что уходит клиенту, подтверждает ваша команда." },
+        ],
+      },
+      flagship: {
+        label: "Флагманский кейс · Топ Домус",
+        title: "ИИ-обработка заказов и логистика для Топ Домус",
+        problem: "Менеджер обрабатывал каждый входящий заказ вручную: читал письма, сверял остатки по двум отдельным складам, применял десятки правил совместимости и замен, считал реальную стоимость доставки и пункты выдачи и вручную планировал маршрут водителя на день. Медленно и с ошибками, особенно на потоке заказов.",
+        approach: "Собрала бота мониторинга почты: он читает входящие письма с заказами (с ИИ-фолбэком для свободной формы, защищённым многоступенчатыми проверками против галлюцинаций — привязка цитат к исходному письму и сверка с каталогом), проверяет остатки в реальном времени по обоим складам, применяет правила совместимости и замен и считает реальную стоимость, сроки и пункты выдачи через API курьерской службы — помечая любое расхождение с тем, что сайт обещал клиенту. Второй модуль строит оптимальный маршрут доставки на день через картографический API с расчётным временем прибытия по каждой точке.",
+        result: "Рабочий ассистент, который превращает ручной и ошибкоопасный процесс заказов в автоматический отчёт с чётким вердиктом — «готов к подтверждению» или «нужно решение» — плюс просчитанный маршрут доставки, при этом каждый шаг с ИИ остаётся помеченным на проверку человеком, прежде чем что-то дойдёт до клиента.",
+        problemLabel: "Проблема",
+        approachLabel: "Подход",
+        resultLabel: "Результат",
+        metricsLabel: "Результат",
+        metrics: [
+          { value: "Авто", label: "отчёт по заказу с чётким вердиктом" },
+          { value: "2", label: "склада сверяются в реальном времени" },
+          { value: "Маршрут", label: "оптимальный план водителя на день" },
+        ],
+      },
+      otherCases: {
+        title: "Другие ИИ-ассистенты, которые я собрала",
+        subtitle: "Каждый закрывает конкретную повторяющуюся задачу — и человек всегда остаётся в контуре.",
+        items: [
+          { title: "ИИ-ассистент для авторов в Instagram", desc: "ИИ-агент сортирует сотни комментариев и DM в день, рутину закрывает сам в голосе автора, остальное готовит на утверждение. Собран на Claude API с проверенной базой знаний и интерфейсом проверки в Telegram." },
+          { title: "Ассистент для откликов на вакансии", desc: "Ассистент-расширение браузера готовит адаптированные резюме, сопроводительные письма и ответы на вопросы анкеты — а финальную отправку всегда делает человек. Осознанная граница автоматизации." },
+        ],
+      },
+      process: {
+        title: "Как мы работаем",
+        subtitle: "От понимания вашего процесса до работающего ассистента.",
+        steps: [
+          { num: "1", title: "Разбор процесса", desc: "Разбираем, как работа устроена сегодня на самом деле — шаги, правила, инструменты и передачи. Сначала логика." },
+          { num: "2", title: "Проектирование ассистента", desc: "Определяю, что бот решает сам, что предлагает и где остаётся человек. Вы утверждаете эту границу." },
+          { num: "3", title: "Сборка и тесты", desc: "Собираю всё под ключ с проверками против галлюцинаций и тестирую на ваших реальных кейсах, прежде чем он коснётся боевых данных." },
+          { num: "4", title: "Запуск и доработка", desc: "Выкатываем, смотрим на реальном потоке и настраиваем. Работает как приложение или как фоновый сервис на вашей стороне." },
+        ],
+      },
+      faq: {
+        title: "Вопросы перед стартом",
+        items: [
+          { q: "А ИИ не наделает ошибок с моими клиентами?", a: "Ассистент построен по принципу «человек в контуре»: он готовит и предлагает, а всё, что уходит клиенту, помечается на подтверждение человеком. Проверки против галлюцинаций (привязка цитат, сверка с каталогом) держат его честным." },
+          { q: "Мои данные уходят из бизнеса?", a: "Ассистент работает на ваших данных и ваших аккаунтах. Может запускаться как десктоп-приложение или фоновый сервис на вашей стороне — формат согласуем заранее." },
+          { q: "Сколько это стоит?", a: "Каждый ассистент делается под ваш процесс, поэтому цена — за проект. Опишите задачу — вернусь в течение 24 часов с планом и оценкой." },
+          { q: "Сколько времени занимает?", a: "Зависит от процесса. После разбора даю понятные сроки — обычно первая рабочая версия — это недели, а не месяцы." },
+        ],
+      },
+      finalCta: {
+        title: "Есть рутина, которую стоит автоматизировать?",
+        subtitle: "Опишите ваш процесс — вернусь в течение 24 часов с тем, как впишется ИИ-ассистент и что для этого нужно. Цена — за проект.",
+        cta: "Обсудить проект",
+      },
     },
     hero: {
       badge: "Премиум шаблоны",
@@ -1095,7 +1293,7 @@ const translations = {
         contact: "Контакт (Telegram или Email)",
         contactPlaceholder: "@telegram или email",
         projectType: "Тип проекта",
-        projectTypes: ["Лендинг", "Редизайн", "Другое"] as readonly string[],
+        projectTypes: ["ИИ-ассистент", "Лендинг", "Редизайн", "Другое"] as readonly string[],
         timeline: "Сроки",
         timelines: ["Стандарт", "Быстро 3–5 дней"] as readonly string[],
         description: "Краткое описание",
@@ -1126,7 +1324,7 @@ const translations = {
         "Готов запуститься или обновить присутствие? Давай построим что-то мощное.",
       ],
     },
-    marquee: ["Лендинги", "Интернет-магазины", "SaaS", "Портфолио", "Креатив", "Люкс", "Интерактив", "Минимализм"] as readonly string[],
+    marquee: ["ИИ-ассистенты", "Автоматизация заказов", "Боты поддержки", "ИИ-логистика", "Лендинги", "Интернет-магазины", "SaaS", "Интерактив"] as readonly string[],
     categories: {
       "All": "Все",
       "E-commerce": "Интернет-магазин",
@@ -2114,7 +2312,21 @@ function getPageMeta(lang: Lang, path: string): { title: string; description: st
 
   const tplMatch = path.match(/^\/template\/(\d+)/);
 
-  if (path === "/about") {
+  if (path === "/ai") {
+    title = ru
+      ? "ИИ-ассистенты для бизнеса — автоматизация под ключ | Formcraft"
+      : "AI Assistants for Business — Custom Automation | Formcraft";
+    description = ru
+      ? "Проектируем и собираем ИИ-ассистентов под ваш процесс: обработка заказов, поддержка, логистика. Человек в контуре, работа на ваших данных. Кейс Топ Домус."
+      : "Custom AI assistants for your business: order processing, support, logistics. Human-in-the-loop, running on your own data. See the Top Domus case.";
+  } else if (path === "/landings") {
+    title = ru
+      ? "Лендинги под ключ — дизайн и разработка | Formcraft"
+      : "Landing Pages — Custom Design & Development | Formcraft";
+    description = ru
+      ? "Высококонверсионные лендинги под ключ на основе премиум-шаблонов. Дизайн, адаптивная вёрстка и запуск за 3–7 дней."
+      : "High-converting landing pages from premium templates. Custom design, responsive code, launched in 3–7 days.";
+  } else if (path === "/about") {
     title = `${tr.about.title} — Formcraft`;
     description = ru
       ? "О проекте Formcraft: лендинг как система конверсии — сначала логика и структура, затем визуальное направление."
