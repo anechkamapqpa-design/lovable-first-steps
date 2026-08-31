@@ -52,7 +52,7 @@ export default function TemplateDetail() {
       <main className="flex-1 min-h-screen flex flex-col justify-center pt-16 sm:pt-20 pb-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <Button variant="ghost" size="sm" className="mb-3 sm:mb-4 group" onClick={() => { navigate(lp("/")); setTimeout(() => { document.getElementById("templates")?.scrollIntoView({ behavior: "smooth" }); }, 100); }}>
+            <Button variant="ghost" size="sm" className="mb-3 sm:mb-4 group" onClick={() => { navigate(lp("/landings")); setTimeout(() => { document.getElementById("templates")?.scrollIntoView({ behavior: "smooth" }); }, 100); }}>
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />{t.detail.back}
             </Button>
           </motion.div>
@@ -83,7 +83,7 @@ export default function TemplateDetail() {
                 <div className="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
                   <Button className="rounded-xl w-full sm:w-auto" onClick={() => {
                     const prefill = `${t.detail.orderPrefix} "${template.title}"`;
-                    navigate(lp("/?prefill=" + encodeURIComponent(prefill)));
+                    navigate(lp("/landings?service=landing&prefill=" + encodeURIComponent(prefill)));
                     setTimeout(() => {
                       document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
                     }, 150);

@@ -34,6 +34,7 @@ const Archive = lazy(() => import("./pages/demos/Archive"));
 const Lumiere = lazy(() => import("./pages/demos/Lumiere"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const AI = lazy(() => import("./pages/AI"));
+const Landings = lazy(() => import("./pages/Landings"));
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const langRoutes = (
   <>
     <Route index element={<Home />} />
     <Route path="ai" element={<AI />} />
+    <Route path="landings" element={<Landings />} />
     <Route path="template/:id" element={<TemplateDetail />} />
     <Route path="about" element={<About />} />
     <Route path="privacy" element={<Privacy />} />

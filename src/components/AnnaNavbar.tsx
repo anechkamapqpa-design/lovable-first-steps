@@ -19,7 +19,7 @@ export function AnnaNavbar() {
   const handleSearchSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     const q = searchQuery.trim();
-    navigate(lp(q ? `/?q=${encodeURIComponent(q)}` : "/"));
+    navigate(lp(q ? `/landings?q=${encodeURIComponent(q)}` : "/landings"));
     setSearchOpen(false);
     setTimeout(() => {
       document.getElementById("templates")?.scrollIntoView({ behavior: "smooth" });
@@ -28,7 +28,7 @@ export function AnnaNavbar() {
 
   const navLinks = [
     { label: t.nav.ai, href: lp("/ai"), hash: null, external: false },
-    { label: t.nav.landings, href: lp("/#templates"), hash: "templates", external: false },
+    { label: t.nav.landings, href: lp("/landings"), hash: null, external: false },
     { label: t.nav.about, href: lp("/about"), hash: null, external: false },
     // /social is a separate static site (the Instagram bot product) served via a
     // Vercel rewrite, not a route in this SPA — needs a real page load, not
