@@ -34,25 +34,25 @@ export default function AI() {
             <div className="absolute top-1/4 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-primary/10 rounded-full blur-3xl" />
             <div className="absolute bottom-1/4 right-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-primary/[0.04] rounded-full blur-3xl" />
           </div>
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative pt-28 sm:pt-32 pb-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative pt-28 sm:pt-32 pb-16">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 mb-6">
               <Bot className="w-3.5 h-3.5 text-primary" />
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{ai.hero.tag}</span>
             </motion.div>
-            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-[1.05]">
+            <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] font-bold tracking-tighter leading-[1.02]">
               <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="block">{ai.hero.title1}</motion.span>
               <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }} className="block text-gradient">{ai.hero.title2}</motion.span>
             </h1>
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">{ai.hero.subtitle}</motion.p>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.6 }} className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
-              <Button size="lg" className="rounded-xl w-full sm:w-auto" onClick={goToContact}>{ai.hero.ctaPrimary}<ArrowRight className="w-4 h-4 ml-1" /></Button>
-              <Button size="lg" variant="secondary" className="rounded-xl w-full sm:w-auto" asChild>
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="mt-7 sm:mt-9 text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed">{ai.hero.subtitle}</motion.p>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.6 }} className="mt-9 sm:mt-12 flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+              <Button size="lg" className="rounded-xl w-full sm:w-auto h-12 sm:h-14 px-7 sm:px-9 text-base sm:text-lg" onClick={goToContact}>{ai.hero.ctaPrimary}<ArrowRight className="w-5 h-5 ml-1.5" /></Button>
+              <Button size="lg" variant="secondary" className="rounded-xl w-full sm:w-auto h-12 sm:h-14 px-7 sm:px-9 text-base sm:text-lg" asChild>
                 <a href="#flagship">{ai.hero.ctaSecondary}</a>
               </Button>
             </motion.div>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.85, duration: 0.8 }} className="mt-8 sm:mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs sm:text-sm text-muted-foreground">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.85, duration: 0.8 }} className="mt-9 sm:mt-12 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm sm:text-base text-muted-foreground">
               {ai.hero.stats.map((s, i) => (
-                <div key={i} className="flex items-center gap-2">
+                <div key={i} className="flex items-center gap-2.5">
                   <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                   <span>{s}</span>
                 </div>
