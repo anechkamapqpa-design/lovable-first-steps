@@ -76,7 +76,7 @@ export default function AI() {
                     <Icon className="w-5 h-5 text-primary" />
                   </div>
                   <h3 className="font-display text-lg sm:text-xl font-bold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                  <p className="text-base text-muted-foreground leading-relaxed">{item.desc}</p>
                 </motion.div>
               );
             })}
@@ -100,7 +100,7 @@ export default function AI() {
                     </div>
                     <div>
                       <h3 className="font-display text-lg sm:text-xl font-bold text-foreground mb-2">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                      <p className="text-base text-muted-foreground leading-relaxed">{item.desc}</p>
                     </div>
                   </motion.div>
                 );
@@ -120,7 +120,7 @@ export default function AI() {
               {([["problemLabel", "problem"], ["approachLabel", "approach"], ["resultLabel", "result"]] as const).map(([labelKey, textKey], i) => (
                 <motion.div key={labelKey} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary mb-3">{ai.flagship[labelKey]}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{ai.flagship[textKey]}</p>
+                  <p className="text-base text-muted-foreground leading-relaxed">{ai.flagship[textKey]}</p>
                 </motion.div>
               ))}
             </div>
@@ -135,11 +135,11 @@ export default function AI() {
                   <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="flex items-start gap-2.5 rounded-xl border border-border/40 bg-background/40 p-4">
                       <span className="mt-0.5 text-muted-foreground/40 shrink-0"><X className="w-4 h-4" /></span>
-                      <p className="text-sm text-muted-foreground leading-snug"><span className="sm:hidden font-semibold text-muted-foreground/60">{ai.flagship.beforeLabel}: </span>{row.before}</p>
+                      <p className="text-[15px] text-muted-foreground leading-snug"><span className="sm:hidden font-semibold text-muted-foreground/60">{ai.flagship.beforeLabel}: </span>{row.before}</p>
                     </div>
                     <div className="flex items-start gap-2.5 rounded-xl border border-primary/30 bg-primary/[0.06] p-4">
                       <span className="mt-0.5 text-primary shrink-0"><Check className="w-4 h-4" /></span>
-                      <p className="text-sm text-foreground/90 leading-snug"><span className="sm:hidden font-semibold text-primary">{ai.flagship.afterLabel}: </span>{row.after}</p>
+                      <p className="text-[15px] text-foreground/90 leading-snug"><span className="sm:hidden font-semibold text-primary">{ai.flagship.afterLabel}: </span>{row.after}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -161,7 +161,7 @@ export default function AI() {
                   <span className="font-display text-2xl font-black text-primary/20">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="font-display text-lg sm:text-xl font-bold text-foreground">{item.title}</h3>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                <p className="text-base text-muted-foreground leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -182,7 +182,7 @@ export default function AI() {
                     <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-primary bg-primary/10 rounded-full px-2.5 py-1">{step.duration}</span>
                   </div>
                   <h3 className="font-display text-lg sm:text-xl font-bold text-foreground mb-2">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                  <p className="text-base text-muted-foreground leading-relaxed">{step.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -196,13 +196,13 @@ export default function AI() {
             {ai.faq.items.map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="rounded-2xl border border-border/50 bg-card/40 p-6 sm:p-7">
                 <h3 className="font-display text-base sm:text-lg font-bold text-foreground mb-2">{item.q}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.a}</p>
+                <p className="text-base text-muted-foreground leading-relaxed">{item.a}</p>
               </motion.div>
             ))}
           </div>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-14 rounded-3xl border border-primary/30 bg-primary/5 p-8 sm:p-12 text-center">
             <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-3">{ai.finalCta.title}</h3>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto mb-7 leading-relaxed">{ai.finalCta.subtitle}</p>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto mb-7 leading-relaxed">{ai.finalCta.subtitle}</p>
             <Button size="lg" className="rounded-xl" onClick={goToContact}>{ai.finalCta.cta}<ArrowRight className="w-4 h-4 ml-1" /></Button>
           </motion.div>
         </section>
