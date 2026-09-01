@@ -12,8 +12,9 @@ export function AnnaFooter() {
   const { t } = useLang();
   const lp = useLangPath();
   const [searchParams, setSearchParams] = useSearchParams();
+  // Kept as hidden lead-routing state, set from the ?service= param; the
+  // selector UI was removed to keep the form to name / contact / description.
   const [selectedType, setSelectedType] = useState(0);
-  const [selectedTimeline, setSelectedTimeline] = useState(0);
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [description, setDescription] = useState("");
@@ -21,8 +22,12 @@ export function AnnaFooter() {
 
   useEffect(() => {
     const prefill = searchParams.get("prefill");
-    if (prefill) {
-      setDescription(prefill);
+    const service = searchParams.get("service");
+    if (prefill || service) {
+      if (prefill) setDescription(prefill);
+      // Preselect the matching project type: "ai" → first option, "landing" → second.
+      if (service === "ai") setSelectedType(0);
+      else if (service === "landing") setSelectedType(1);
       setSearchParams({}, { replace: true });
     }
   }, [searchParams, setSearchParams]);
@@ -56,7 +61,7 @@ export function AnnaFooter() {
           name: name.trim(),
           contact: contact.trim(),
           projectType: t.footer.form.projectTypes[selectedType],
-          timeline: t.footer.form.timelines[selectedTimeline],
+          timeline: "",
           description: description.trim(),
         },
       });
@@ -66,7 +71,6 @@ export function AnnaFooter() {
       setContact("");
       setDescription("");
       setSelectedType(0);
-      setSelectedTimeline(0);
     } catch (err) {
       console.error(err);
       toast.error(t.footer.form.errorSubmit);
@@ -98,24 +102,6 @@ export function AnnaFooter() {
                 <div>
                   <label htmlFor="contact-handle" className="block text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-1.5">{t.footer.form.contact}</label>
                   <input id="contact-handle" type="text" value={contact} onChange={(e) => setContact(e.target.value)} placeholder={t.footer.form.contactPlaceholder} className="w-full px-3 py-2.5 bg-background/60 border border-border/50 rounded-lg text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary/50 transition-colors" />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-1.5">{t.footer.form.projectType}</label>
-                <div className="flex flex-wrap gap-1.5">
-                  {t.footer.form.projectTypes.map((type, i) => (
-                    <Button key={type} variant={selectedType === i ? "default" : "outline"} size="sm" onClick={() => setSelectedType(i)} className={`h-8 text-xs ${selectedType === i ? "" : "border-border/50 text-muted-foreground"}`}>{type}</Button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-1.5">{t.footer.form.timeline}</label>
-                <div className="flex flex-wrap gap-1.5">
-                  {t.footer.form.timelines.map((tl, i) => (
-                    <Button key={tl} variant={selectedTimeline === i ? "default" : "outline"} size="sm" onClick={() => setSelectedTimeline(i)} className={`h-8 text-xs ${selectedTimeline === i ? "" : "border-border/50 text-muted-foreground"}`}>{tl}</Button>
-                  ))}
                 </div>
               </div>
 
